@@ -1,4 +1,5 @@
-﻿using Microsoft.Owin;
+﻿using ImageWebAPIs.Infrastructure;
+using Microsoft.Owin;
 using Owin;
 using System;
 using System.Collections.Generic;
@@ -9,13 +10,19 @@ using System.Web.Http;
 [assembly: OwinStartup(typeof(ImageWebAPIs.Startup))]
 namespace ImageWebAPIs
 {
-    
+
     public class Startup
     {
         public void Configuration(IAppBuilder app)
         {
+            app.CreatePerOwinContext(AppDbContext.Create);
+
+            OAuthService.Register(app);
+
             HttpConfiguration config = new HttpConfiguration();
             WebApiConfig.Register(config);
+
+            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             app.UseWebApi(config);
         }
     }
