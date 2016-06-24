@@ -26,28 +26,13 @@ namespace ImageWebAPIs.Controllers
                 return User.Identity as ClaimsIdentity;
             }
         }
-        public int? CurUserId
-        {
-            get
-            {
-                bool exist = false;
-                exist = CurUser.HasClaim(x => x.Type == ClaimTypes.NameIdentifier);
-                if (!exist) return null;
 
-                int id = -1;
-                bool success = int.TryParse(CurUser.FindFirst(x => x.Type == ClaimTypes.NameIdentifier).Value, out id);
-                if (success) return id;
-
-                return null;
-            }
-        }
-
-        public HttpResponseMessage StatusMsg(HttpStatusCode code, string message)
+        public HttpResponseMessage StatusMsg(HttpStatusCode code, string msg)
         {
 
             var myError = new
             {
-                msg = message
+                message = msg
             };
             return Request.CreateResponse(code, myError);
         }

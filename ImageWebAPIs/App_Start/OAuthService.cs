@@ -17,25 +17,29 @@ namespace ImageWebAPIs
 {
     public class OAuthService
     {
-
+        private static string _issuer;
         public static void Register(IAppBuilder app)
         {
+            _issuer = AppHelpers.GetBaseUrl();
             ConfigureOAuthTokenGeneration(app);
             ConfigureOAuthTokenConsumption(app);
+
         }
         private static void ConfigureOAuthTokenGeneration(IAppBuilder app)
         {
-           
+
             OAuthAuthorizationServerOptions OAuthServerOptions = new OAuthAuthorizationServerOptions()
             {
+
                 //For Dev enviroment only (on production should be AllowInsecureHttp = false)
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/login"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
-                Provider = new CustomOAuthProvider(),
-                AccessTokenFormat = new CustomJwtFormat("http://localhost:59822")
-            };
+                Provider = new ImageApiOAuthProvider(),
 
+                AccessTokenProvider = new ImageWebApiOauthAccessTokenProvider(),
+
+            };
             // OAuth 2.0 Bearer Access Token Generation
             app.UseOAuthAuthorizationServer(OAuthServerOptions);
         }
@@ -43,7 +47,6 @@ namespace ImageWebAPIs
         private static void ConfigureOAuthTokenConsumption(IAppBuilder app)
         {
 
-            var issuer = "http://localhost:59822";
             string audienceId = ConfigurationManager.AppSettings["AudienceId"];
             byte[] audienceSecret = TextEncodings.Base64Url.Decode(ConfigurationManager.AppSettings["AudienceSecret"]);
 
@@ -51,11 +54,12 @@ namespace ImageWebAPIs
             app.UseJwtBearerAuthentication(
                 new JwtBearerAuthenticationOptions
                 {
+
                     AuthenticationMode = AuthenticationMode.Active,
                     AllowedAudiences = new[] { audienceId },
                     IssuerSecurityTokenProviders = new IIssuerSecurityTokenProvider[]
                     {
-                        new SymmetricKeyIssuerSecurityTokenProvider(issuer, audienceSecret)
+                        new SymmetricKeyIssuerSecurityTokenProvider(_issuer, audienceSecret)
                     }
                 });
         }
