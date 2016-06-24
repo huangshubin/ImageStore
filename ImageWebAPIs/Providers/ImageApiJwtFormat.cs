@@ -1,4 +1,5 @@
-﻿using Microsoft.Owin.Security;
+﻿using ImageWebAPIs.Infrastructure;
+using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.DataHandler.Encoder;
 using System;
 using System.Collections.Generic;

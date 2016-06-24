@@ -12,7 +12,7 @@ using ImageWebAPIs.Repositories;
 
 namespace ImageWebAPIs.Controllers
 {
-    [Authorize]
+
     [RoutePrefix("api/image")]
     public class ImageController : BaseApiController
     {
@@ -25,7 +25,8 @@ namespace ImageWebAPIs.Controllers
             {
               
                 var userId = CurUser.Identifier();
-                
+
+                var test = AppHelpers.GetBaseUrl();
                 if (userId == null)
                     return StatusMsg(HttpStatusCode.Unauthorized, "unaothorized");
 

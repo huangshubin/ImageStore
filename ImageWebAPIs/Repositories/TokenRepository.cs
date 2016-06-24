@@ -7,5 +7,6 @@ namespace ImageWebAPIs.Repositories
 {
     public class TokenRepository
     {
+
     }
 }

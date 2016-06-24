@@ -20,7 +20,7 @@ namespace ImageWebAPIs
         private static string _issuer;
         public static void Register(IAppBuilder app)
         {
-            _issuer = AppHelpers.GetBaseUrl();
+            _issuer =AppHelpers.GetBaseUrl();
             ConfigureOAuthTokenGeneration(app);
             ConfigureOAuthTokenConsumption(app);
 
@@ -36,10 +36,9 @@ namespace ImageWebAPIs
                 TokenEndpointPath = new PathString("/login"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
                 Provider = new ImageApiOAuthProvider(),
-
-                AccessTokenProvider = new ImageWebApiOauthAccessTokenProvider(),
-
+                AccessTokenProvider =new ImageWebApiOauthAccessTokenProvider();
             };
+
             // OAuth 2.0 Bearer Access Token Generation
             app.UseOAuthAuthorizationServer(OAuthServerOptions);
         }
@@ -54,7 +53,7 @@ namespace ImageWebAPIs
             app.UseJwtBearerAuthentication(
                 new JwtBearerAuthenticationOptions
                 {
-
+                   
                     AuthenticationMode = AuthenticationMode.Active,
                     AllowedAudiences = new[] { audienceId },
                     IssuerSecurityTokenProviders = new IIssuerSecurityTokenProvider[]

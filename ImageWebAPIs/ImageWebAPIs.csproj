@@ -225,6 +225,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ImageApiJwtFormat.cs" />
     <Compile Include="Providers\ImageApiOAuthProvider.cs" />
+    <Compile Include="Providers\ImageWebApiAuthenticationProvider.cs" />
     <Compile Include="Providers\ImageWebApiOauthAccessTokenProvider.cs" />
     <Compile Include="Repositories\ImageRepository.cs" />
     <Compile Include="Repositories\TokenRepository.cs" />
