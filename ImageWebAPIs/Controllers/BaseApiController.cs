@@ -9,7 +9,7 @@ using System.Web.Http;
 using Microsoft.Owin.Security;
 using Microsoft.AspNet.Identity.Owin;
 using System.Security.Claims;
-
+using ImageWebAPIs.Externsions;
 namespace ImageWebAPIs.Controllers
 {
     public class BaseApiController : ApiController
@@ -27,14 +27,15 @@ namespace ImageWebAPIs.Controllers
             }
         }
 
-        public HttpResponseMessage StatusMsg(HttpStatusCode code, string msg)
+        public JsonStatusResult StatusMsg(HttpStatusCode code, string msg)
         {
 
             var myError = new
             {
                 message = msg
             };
-            return Request.CreateResponse(code, myError);
+
+            return Request.CreateJsonResult(code, myError);
         }
 
     }

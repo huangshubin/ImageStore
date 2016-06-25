@@ -31,8 +31,7 @@ namespace ImageWebAPIs
                 TokenEndpointPath = new PathString("/api/login"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(tokenExpireTime ?? 1440),
                 Provider = new ImageApiAuthorizateProvider(),
-                AccessTokenProvider = new ImageApiAccessTokenProvider(app),
-                RefreshTokenProvider = new ImageApiAccessTokenProvider(app)
+                AccessTokenProvider = new ImageApiAccessTokenProvider(app)
             };
 
             // OAuth 2.0 Bearer Access Token Generation

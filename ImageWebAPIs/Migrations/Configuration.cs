@@ -5,13 +5,11 @@ namespace ImageWebAPIs.Migrations
     using Models;
     using System;
     using System.Collections.Generic;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Data.Entity.Migrations.Model;
     using System.Data.Entity.SqlServer;
-    using System.IO;
     using System.Linq;
-
+    using ImageWebAPIs.Externsions;
     internal sealed class Configuration : DbMigrationsConfiguration<Infrastructure.AppDbContext>
     {
         public Configuration()

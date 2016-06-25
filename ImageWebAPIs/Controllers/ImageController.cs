@@ -9,35 +9,36 @@ using ImageWebAPIs.Externsions;
 using System;
 using System.Web;
 using ImageWebAPIs.Repositories;
+using System.Web.Http.Results;
+using System.Collections.Generic;
 
 namespace ImageWebAPIs.Controllers
 {
-
+    [Authorize]
     [RoutePrefix("api/image")]
     public class ImageController : BaseApiController
     {
-
+        private ImageRepository imgResponsity;
+        public ImageController()
+        {
+            imgResponsity = new ImageRepository();
+        }
         [Route("")]
         [HttpPost]
-        public async Task<HttpResponseMessage> StoreImage()
+        public async Task<IHttpActionResult> StoreImage()
         {
             try
             {
 
-                var userId = CurUser.Identifier();
-
-                if (userId == null)
-                    return StatusMsg(HttpStatusCode.Unauthorized, "unaothorized");
-
                 if (!Request.Content.IsMimeMultipartContent())
                 {
+
                     return StatusMsg(HttpStatusCode.UnsupportedMediaType, "use multipart/form-data type to post data");
                 }
 
                 var formData = await Request.GetMultipartFormsSync();
-                var imgResponsity = new ImageRepository(CurUser);
 
-                await imgResponsity.SaveSync(formData);
+                await imgResponsity.SaveSync(formData, CurUser);
 
 
                 return StatusMsg(HttpStatusCode.OK, "success");
@@ -54,8 +55,54 @@ namespace ImageWebAPIs.Controllers
 
         }
 
+        [Route("list")]
+        public async Task<IHttpActionResult> GetImageIds()
+        {
+            try
+            {
 
+                var userId = CurUser.Identifier();
 
+                IList<int> imageIds = await imgResponsity.FineImagesByUser(userId);
 
+                var result = new { images = imageIds };
+                return Request.CreateJsonResult(result);
+
+            }
+
+            catch (HttpDataException hre)
+            {
+                return StatusMsg(hre.ResponseStatus, hre.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusMsg(HttpStatusCode.InternalServerError, ex.Message);
+            }
+
+        }
+        [Route("{id:int}")]
+        public async Task<IHttpActionResult> GetImage(int id)
+        {
+            try
+            {
+
+                var image = await imgResponsity.FineImageById(id);
+
+                var result = new {type=image.Item2, image = image.Item1};
+
+                return Request.CreateJsonResult(result);
+
+            }
+
+            catch (HttpDataException hre)
+            {
+                return StatusMsg(hre.ResponseStatus, hre.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusMsg(HttpStatusCode.InternalServerError, ex.Message);
+            }
+
+        }
     }
 }

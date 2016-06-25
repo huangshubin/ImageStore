@@ -31,11 +31,11 @@ namespace ImageWebAPIs.Infrastructure
             return imageFormat;
         }
 
-        public static byte[] imageToByteArray(string imgPath, string fileName)
+        public static byte[] imageToByteArray(string imgPath, string type)
         {
             MemoryStream ms = new MemoryStream();
             var img = System.Drawing.Image.FromFile(imgPath);
-            img.Save(ms, GetImageFormater(Path.GetExtension(fileName)));
+            img.Save(ms, GetImageFormater(type));
             return ms.ToArray();
         }
         public static string UnquoteToken(string token)

@@ -8,23 +8,16 @@ using System.Linq;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Web;
-using Microsoft.AspNet.Identity.Owin;
+using System.Data.Entity;
 using System.Threading.Tasks;
 using System.Net;
 
 namespace ImageWebAPIs.Repositories
 {
-    public class ImageRepository:DBRepository
+    public class ImageRepository : DBRepository
     {
-      
-        private ClaimsIdentity _curUser;
 
-        public ImageRepository(ClaimsIdentity user)
-        {
-            _curUser = user;
-        }
-
-        public async Task<int> SaveSync(IDictionary<string, object> formData)
+        public async Task<int> SaveSync(IDictionary<string, object> formData, ClaimsIdentity user)
         {
             object temp;
             if (!formData.TryGetValue("image", out temp) || !(temp is MultipartFileData))
@@ -44,13 +37,15 @@ namespace ImageWebAPIs.Repositories
             var savePath = "";
             if (!store)
             {
+                var destFileName = $"File_{user.Name}_{DateTime.Now.ToString("yyyyMMddhhmmss")}{Path.GetExtension(orignFileName)}";
+
                 savePath = SaveImageDest(imgTempPath, orignFileName);
             }
             var img = new Models.Image()
             {
                 Active = false,
-                ImageContent = store ? AppHelper.imageToByteArray(imgTempPath, orignFileName) : null,
-                UserId = _curUser.Identifier().Value,
+                ImageContent = store ? AppHelper.imageToByteArray(imgTempPath, Path.GetExtension(orignFileName)) : null,
+                UserId = user.Identifier().Value,
                 ImageType = Path.GetExtension(orignFileName),
                 ImagePath = store ? null : savePath
 
@@ -59,7 +54,28 @@ namespace ImageWebAPIs.Repositories
             DB.Images.Add(img);
             return await DB.SaveChangesAsync();
         }
-        private string SaveImageDest(string imgTempPath, string fileName)
+
+        public async Task<IList<int>> FineImagesByUser(int? userId)
+        {
+            var ids = await (from p in DB.Images
+                             where p.UserId == userId
+                             select p.Id).ToListAsync();
+
+            return ids;
+        }
+        public async Task<Tuple<byte[], string>> FineImageById(int id)
+        {
+            var image = await DB.Images.FindAsync(id);
+
+            var bytes = image.ImageContent;
+            if (bytes == null)
+            {
+                bytes = AppHelper.imageToByteArray(image.ImagePath, image.ImageType);
+            }
+            return new Tuple<byte[], string>(bytes, image.ImageType);
+        }
+
+        private string SaveImageDest(string imgTempPath, string destFileName)
         {
             var path = ConfigurationManager.AppSettings["ImagePath"];
             if (path == null) path = "~/Images";
@@ -69,11 +85,7 @@ namespace ImageWebAPIs.Repositories
 
             Directory.CreateDirectory(path);
 
-
-            var destFileName = $"File_{_curUser.Name}_{DateTime.Now.ToString("yyyyMMddhhmmss")}{Path.GetExtension(fileName)}";
             var destPath = Path.Combine(path, destFileName);
-
-
             File.Copy(imgTempPath, destPath, true);
 
             return destPath;

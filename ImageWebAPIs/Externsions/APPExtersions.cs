@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -39,6 +40,14 @@ namespace ImageWebAPIs.Externsions
             return formsData;
         }
 
+        public static JsonStatusResult CreateJsonResult<T>(this HttpRequestMessage request, HttpStatusCode statusCode, T value)
+        {
+            return new JsonStatusResult(request, statusCode, value);
+        }
+        public static JsonStatusResult CreateJsonResult<T>(this HttpRequestMessage request, T value)
+        {
+            return new JsonStatusResult(request, HttpStatusCode.OK, value);
+        }
         public static int? Identifier(this ClaimsIdentity user)
         {
             var strId = user.FindByType(ClaimTypes.NameIdentifier);

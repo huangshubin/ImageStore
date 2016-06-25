@@ -202,6 +202,7 @@
     <Compile Include="Infrastructure\AppHelper.cs" />
     <Compile Include="Infrastructure\HttpDataException.cs" />
     <Compile Include="Infrastructure\Encrypter.cs" />
+    <Compile Include="Infrastructure\JsonStatusResult.cs" />
     <Compile Include="Migrations\201606221812286_initial.cs" />
     <Compile Include="Migrations\201606221812286_initial.Designer.cs">
       <DependentUpon>201606221812286_initial.cs</DependentUpon>
@@ -227,7 +228,7 @@
       <DependentUpon>201606250525178_FiveDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Infrastructure\DBExternsions.cs" />
+    <Compile Include="Externsions\DBExternsions.cs" />
     <Compile Include="Models\EntityBase.cs" />
     <Compile Include="Models\Token.cs" />
     <Compile Include="Models\Image.cs" />

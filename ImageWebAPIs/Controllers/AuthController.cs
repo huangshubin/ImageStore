@@ -17,8 +17,7 @@ namespace ImageWebAPIs.Controllers
     {
 
         [Route("api/logout")]
-        [HttpPost]
-        public async Task<HttpResponseMessage> Logout()
+        public async Task<JsonStatusResult> Logout()
         {
             try
             {
@@ -33,8 +32,6 @@ namespace ImageWebAPIs.Controllers
                     TokenRepository reps = new TokenRepository();
                     await reps.RemoveUserTokenAsync(userId.Value, token);
                 }
-
-
 
                 return StatusMsg(HttpStatusCode.OK, "success");
             }
