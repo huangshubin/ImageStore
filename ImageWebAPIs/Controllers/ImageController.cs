@@ -23,10 +23,9 @@ namespace ImageWebAPIs.Controllers
         {
             try
             {
-              
+
                 var userId = CurUser.Identifier();
 
-                var test = AppHelpers.GetBaseUrl();
                 if (userId == null)
                     return StatusMsg(HttpStatusCode.Unauthorized, "unaothorized");
 
@@ -37,13 +36,14 @@ namespace ImageWebAPIs.Controllers
 
                 var formData = await Request.GetMultipartFormsSync();
                 var imgResponsity = new ImageRepository(CurUser);
+
                 await imgResponsity.SaveSync(formData);
 
 
                 return StatusMsg(HttpStatusCode.OK, "success");
             }
 
-            catch(HttpDataException hre)
+            catch (HttpDataException hre)
             {
                 return StatusMsg(hre.ResponseStatus, hre.Message);
             }

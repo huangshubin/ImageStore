@@ -90,4 +90,5 @@ D:\projects\ImageWebAPIs\ImageWebAPIs\obj\Debug\ImageWebAPIs.Migrations.Second.r
 D:\projects\ImageWebAPIs\ImageWebAPIs\obj\Debug\ImageWebAPIs.csproj.GenerateResource.Cache
 D:\projects\ImageWebAPIs\ImageWebAPIs\obj\Debug\ImageWebAPIs.dll
 D:\projects\ImageWebAPIs\ImageWebAPIs\obj\Debug\ImageWebAPIs.pdb
-D:\projects\ImageWebAPIs\ImageWebAPIs\obj\Debug\ImageWebAPIs.csprojResolveAssemblyReference.cache
+D:\projects\ImageWebAPIs\ImageWebAPIs\obj\Debug\ImageWebAPIs.Migrations.FourDB.resources
+D:\projects\ImageWebAPIs\ImageWebAPIs\obj\Debug\ImageWebAPIs.Migrations.FiveDB.resources

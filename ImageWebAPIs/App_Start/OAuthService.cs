@@ -1,5 +1,4 @@
-﻿using ImageWebAPIs.Infrastructure;
-using ImageWebAPIs.Providers;
+﻿using ImageWebAPIs.Providers;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.DataHandler.Encoder;
@@ -7,20 +6,15 @@ using Microsoft.Owin.Security.Jwt;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
-
+using ImageWebAPIs.Externsions;
 namespace ImageWebAPIs
 {
     public class OAuthService
     {
-        private static string _issuer;
+
         public static void Register(IAppBuilder app)
         {
-            _issuer =AppHelpers.GetBaseUrl();
             ConfigureOAuthTokenGeneration(app);
             ConfigureOAuthTokenConsumption(app);
 
@@ -28,15 +22,17 @@ namespace ImageWebAPIs
         private static void ConfigureOAuthTokenGeneration(IAppBuilder app)
         {
 
+            var tokenExpireTime = ConfigurationManager.AppSettings["OauthTokenExpireTime"]?.ToInt(1440);
             OAuthAuthorizationServerOptions OAuthServerOptions = new OAuthAuthorizationServerOptions()
             {
 
                 //For Dev enviroment only (on production should be AllowInsecureHttp = false)
                 AllowInsecureHttp = true,
-                TokenEndpointPath = new PathString("/login"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
-                Provider = new ImageApiOAuthProvider(),
-                AccessTokenProvider =new ImageWebApiOauthAccessTokenProvider();
+                TokenEndpointPath = new PathString("/api/login"),
+                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(tokenExpireTime ?? 1440),
+                Provider = new ImageApiAuthorizateProvider(),
+                AccessTokenProvider = new ImageApiAccessTokenProvider(app),
+                RefreshTokenProvider = new ImageApiAccessTokenProvider(app)
             };
 
             // OAuth 2.0 Bearer Access Token Generation
@@ -46,20 +42,11 @@ namespace ImageWebAPIs
         private static void ConfigureOAuthTokenConsumption(IAppBuilder app)
         {
 
-            string audienceId = ConfigurationManager.AppSettings["AudienceId"];
-            byte[] audienceSecret = TextEncodings.Base64Url.Decode(ConfigurationManager.AppSettings["AudienceSecret"]);
-
-            // Api controllers with an [Authorize] attribute will be validated with JWT
-            app.UseJwtBearerAuthentication(
-                new JwtBearerAuthenticationOptions
+            app.UseOAuthBearerAuthentication(
+                new OAuthBearerAuthenticationOptions
                 {
-                   
-                    AuthenticationMode = AuthenticationMode.Active,
-                    AllowedAudiences = new[] { audienceId },
-                    IssuerSecurityTokenProviders = new IIssuerSecurityTokenProvider[]
-                    {
-                        new SymmetricKeyIssuerSecurityTokenProvider(_issuer, audienceSecret)
-                    }
+                    Provider = new ImageApiAuthenticateProvider(),
+                    AccessTokenProvider = new ImageApiAccessTokenProvider(app)
                 });
         }
 

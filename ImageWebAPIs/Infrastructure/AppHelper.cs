@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 
 namespace ImageWebAPIs.Infrastructure
 {
-    public static class AppHelpers
+    public static class AppHelper
     {
         public static ImageFormat GetImageFormater(string type)
         {
@@ -51,7 +52,16 @@ namespace ImageWebAPIs.Infrastructure
 
             return token;
         }
+        public static string GetHash(string input)
+        {
+            HashAlgorithm hashAlgorithm = new SHA256CryptoServiceProvider();
 
+            byte[] byteValue = System.Text.Encoding.UTF8.GetBytes(input);
+
+            byte[] byteHash = hashAlgorithm.ComputeHash(byteValue);
+
+            return Convert.ToBase64String(byteHash);
+        }
         public static string GetBaseUrl()
         {
             var request = HttpContext.Current.Request;
@@ -63,5 +73,6 @@ namespace ImageWebAPIs.Infrastructure
 
             return baseUrl;
         }
+
     }
 }

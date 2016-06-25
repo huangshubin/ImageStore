@@ -17,10 +17,23 @@ namespace ImageWebAPIs.Controllers
     {
 
         [Route("api/logout")]
-        public async Task<HttpResponseMessage> OauthLogout()
+        [HttpPost]
+        public async Task<HttpResponseMessage> Logout()
         {
             try
             {
+                var userId = CurUser.Identifier();
+                if (userId == null)
+                    return StatusMsg(HttpStatusCode.Unauthorized, "unaothorized");
+
+                var token = CurUser.FindByType(ExternalClaimTypes.AuthToken);
+
+                if (token != null)
+                {
+                    TokenRepository reps = new TokenRepository();
+                    await reps.RemoveUserTokenAsync(userId.Value, token);
+                }
+
 
 
                 return StatusMsg(HttpStatusCode.OK, "success");

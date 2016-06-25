@@ -26,7 +26,7 @@ namespace ImageWebAPIs.Externsions
             await request.Content.ReadAsMultipartAsync(provider);
             foreach (MultipartFileData file in provider.FileData)
             {
-                string name = AppHelpers.UnquoteToken(file.Headers.ContentDisposition.Name) ?? String.Empty;
+                string name = AppHelper.UnquoteToken(file.Headers.ContentDisposition.Name) ?? String.Empty;
                 formsData.Add(name, file);
             }
             foreach (var key in provider.FormData.AllKeys)
@@ -41,15 +41,31 @@ namespace ImageWebAPIs.Externsions
 
         public static int? Identifier(this ClaimsIdentity user)
         {
+            var strId = user.FindByType(ClaimTypes.NameIdentifier);
+
+            var id = strId.ToInt(-1);
+            if (id == -1) return null;
+
+            return id;
+        }
+        public static string FindByType(this ClaimsIdentity user, string claimType)
+        {
             bool exist = false;
-            exist = user.HasClaim(x => x.Type == ClaimTypes.NameIdentifier);
+            exist = user.HasClaim(x => x.Type == claimType);
             if (!exist) return null;
 
-            int id = -1;
-            bool success = int.TryParse(user.FindFirst(x => x.Type == ClaimTypes.NameIdentifier).Value, out id);
-            if (success) return id;
 
-            return null;
+            var value = user.FindFirst(x => x.Type == claimType).Value;
+            return value;
+        }
+
+        public static int ToInt(this string text, int alternavie = 0)
+        {
+            int rel;
+            if (!int.TryParse(text, out rel))
+                rel = alternavie;
+
+            return rel;
         }
 
     }
@@ -57,5 +73,6 @@ namespace ImageWebAPIs.Externsions
     public static class ExternalClaimTypes
     {
         public const string IsActive = "imagewebpid_isactive";
+        public const string AuthToken = "auth_token";
     }
 }

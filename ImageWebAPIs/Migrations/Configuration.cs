@@ -34,7 +34,7 @@ namespace ImageWebAPIs.Migrations
                     .With(c => c.City = Faker.Address.City())
                     .With(c => c.Country = Faker.Address.Country())
                     .With(c => c.DateRegistered = DateTime.Now)
-                    .With(c => c.Password = "111111")
+                    .With(c => c.Password = AppHelper.GetHash("111111"))
                     .With(c => c.Phone = Faker.Phone.Number())
                     .With(c => c.State = Faker.Address.UsState())
                     .With(c => c.Street = Faker.Address.StreetAddress())

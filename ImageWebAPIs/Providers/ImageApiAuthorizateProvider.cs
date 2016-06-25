@@ -3,15 +3,13 @@ using Microsoft.Owin.Security.OAuth;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Identity.Owin;
-using ImageWebAPIs.Infrastructure;
-using System.Data.Entity;
 using ImageWebAPIs.Models;
 using ImageWebAPIs.Externsions;
+using ImageWebAPIs.Repositories;
 
 namespace ImageWebAPIs.Providers
 {
-    public class ImageApiOAuthProvider : OAuthAuthorizationServerProvider
+    public class ImageApiAuthorizateProvider : OAuthAuthorizationServerProvider
     {
 
         public override Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
@@ -28,14 +26,13 @@ namespace ImageWebAPIs.Providers
 
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { allowedOrigin });
 
-            var dbContext = context.OwinContext.Get<AppDbContext>();
+            var repos = new ClientRepository();
 
-            var user = await dbContext.Clients.FirstOrDefaultAsync(x => x.UserName == context.UserName && x.Password == context.Password);
+            var user = await repos.FindAsync(context.UserName, context.Password);
 
             if (user == null)
             {
-
-                context.SetError("invalid_grant", "user name or password is not incorrect.");
+                context.SetError("invalid_grant", "user name/password is not incorrect. or user is not active");
                 return;
             }
 
@@ -46,6 +43,7 @@ namespace ImageWebAPIs.Providers
 
             context.Validated(ticket);
 
+
         }
         private ClaimsIdentity GenerateIdentity(Client user)
         {
@@ -53,7 +51,7 @@ namespace ImageWebAPIs.Providers
 
             claims.Add(new Claim(ClaimTypes.Name, user.UserName, ClaimValueTypes.String));
             claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString(), ClaimValueTypes.String));
-            claims.Add(new Claim(ExternalClaimTypes.IsActive, user.Active.ToString(), ClaimValueTypes.String));
+            claims.Add(new Claim(ExternalClaimTypes.IsActive, user.Active.ToString().ToLower(), ClaimValueTypes.String));
 
             return new ClaimsIdentity(claims, "ImageWebAPIOAuth");
         }

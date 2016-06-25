@@ -187,7 +187,9 @@
   <ItemGroup>
     <Content Include="scripts\ai.0.22.19-build00125.js" />
     <Content Include="scripts\ai.0.22.19-build00125.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\OAuthService.cs" />
@@ -197,7 +199,7 @@
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Externsions\APPExtersions.cs" />
     <Compile Include="Infrastructure\AppDbContext.cs" />
-    <Compile Include="Infrastructure\AppHelpers.cs" />
+    <Compile Include="Infrastructure\AppHelper.cs" />
     <Compile Include="Infrastructure\HttpDataException.cs" />
     <Compile Include="Infrastructure\Encrypter.cs" />
     <Compile Include="Migrations\201606221812286_initial.cs" />
@@ -216,6 +218,14 @@
     <Compile Include="Migrations\201606230849471_Second.Designer.cs">
       <DependentUpon>201606230849471_Second.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606250508091_FourDB.cs" />
+    <Compile Include="Migrations\201606250508091_FourDB.Designer.cs">
+      <DependentUpon>201606250508091_FourDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606250525178_FiveDB.cs" />
+    <Compile Include="Migrations\201606250525178_FiveDB.Designer.cs">
+      <DependentUpon>201606250525178_FiveDB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Infrastructure\DBExternsions.cs" />
     <Compile Include="Models\EntityBase.cs" />
@@ -223,11 +233,12 @@
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\ImageApiJwtFormat.cs" />
-    <Compile Include="Providers\ImageApiOAuthProvider.cs" />
-    <Compile Include="Providers\ImageWebApiAuthenticationProvider.cs" />
-    <Compile Include="Providers\ImageWebApiOauthAccessTokenProvider.cs" />
+    <Compile Include="Providers\ImageApiAuthorizateProvider.cs" />
+    <Compile Include="Providers\ImageApiAuthenticateProvider.cs" />
+    <Compile Include="Providers\ImageApiAccessTokenProvider.cs" />
+    <Compile Include="Repositories\DBRepository.cs" />
     <Compile Include="Repositories\ImageRepository.cs" />
+    <Compile Include="Repositories\ClientRepository.cs" />
     <Compile Include="Repositories\TokenRepository.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -255,6 +266,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606230849471_Second.resx">
       <DependentUpon>201606230849471_Second.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606250508091_FourDB.resx">
+      <DependentUpon>201606250508091_FourDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606250525178_FiveDB.resx">
+      <DependentUpon>201606250525178_FiveDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -14,13 +14,11 @@ using System.Net;
 
 namespace ImageWebAPIs.Repositories
 {
-    public class ImageRepository
+    public class ImageRepository:DBRepository
     {
+      
         private ClaimsIdentity _curUser;
-        public AppDbContext DbContext
-        {
-            get { return HttpContext.Current.GetOwinContext().Get<AppDbContext>(); }
-        }
+
         public ImageRepository(ClaimsIdentity user)
         {
             _curUser = user;
@@ -35,7 +33,7 @@ namespace ImageWebAPIs.Repositories
             var fileData = temp as MultipartFileData;
 
             var imgTempPath = fileData.LocalFileName;
-            var orignFileName = AppHelpers.UnquoteToken(fileData.Headers.ContentDisposition.FileName);
+            var orignFileName = AppHelper.UnquoteToken(fileData.Headers.ContentDisposition.FileName);
 
             if (!formData.TryGetValue("store", out temp))
                 temp = "1";
@@ -51,15 +49,15 @@ namespace ImageWebAPIs.Repositories
             var img = new Models.Image()
             {
                 Active = false,
-                ImageContent = store ? AppHelpers.imageToByteArray(imgTempPath, orignFileName) : null,
+                ImageContent = store ? AppHelper.imageToByteArray(imgTempPath, orignFileName) : null,
                 UserId = _curUser.Identifier().Value,
                 ImageType = Path.GetExtension(orignFileName),
                 ImagePath = store ? null : savePath
 
             };
 
-            DbContext.Images.Add(img);
-            return await DbContext.SaveChangesAsync();
+            DB.Images.Add(img);
+            return await DB.SaveChangesAsync();
         }
         private string SaveImageDest(string imgTempPath, string fileName)
         {

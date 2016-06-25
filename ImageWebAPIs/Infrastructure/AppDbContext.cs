@@ -5,45 +5,57 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Infrastructure.Annotations;
 
 namespace ImageWebAPIs.Infrastructure
 {
     public class AppDbContext : DbContext
     {
+        public static AppDbContext Create()
+        {
+            return new AppDbContext();
+
+        }
+
         public AppDbContext() : base("defaultDB") { }
 
         public DbSet<Client> Clients { get; set; }
         public DbSet<Image> Images { get; set; }
-
+        public DbSet<Token> Tokens { get; set; }
         public override Task<int> SaveChangesAsync()
         {
-            var entities = ChangeTracker.Entries().Where(x => x.Entity is EntityBase && (x.State == EntityState.Added || x.State == EntityState.Modified));
-
-
-            foreach (var entity in entities)
+            try
             {
-                ((EntityBase)entity.Entity).UpdatedOn = DateTime.Now;
-
+                SetUpdatedOn();
+                return base.SaveChangesAsync();
             }
-            return base.SaveChangesAsync();
+            catch (Exception ex)
+            {
+                var message = ex.Message;
+                throw ex;
+            }
         }
         public override int SaveChanges()
         {
+
+            SetUpdatedOn();
+
+            return base.SaveChanges();
+        }
+
+        private void SetUpdatedOn()
+        {
             var entities = ChangeTracker.Entries().Where(x => x.Entity is EntityBase && (x.State == EntityState.Added || x.State == EntityState.Modified));
 
 
             foreach (var entity in entities)
             {
-                ((EntityBase)entity.Entity).UpdatedOn = DateTime.Now;
+                ((EntityBase)entity.Entity).UpdatedOn = DateTime.UtcNow;
 
             }
+        }
 
-            return base.SaveChanges();
-        }
-        public static AppDbContext Create()
-        {
-            return new AppDbContext();
-        }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Properties<string>().Configure(
@@ -69,11 +81,9 @@ namespace ImageWebAPIs.Infrastructure
             image.Property(x => x.ImagePath).HasMaxLength(256).IsOptional();
             image.Property(x => x.ImageContent).IsOptional();
             image.Property(x => x.ImageType).HasMaxLength(10);
+
             var token = modelBuilder.Entity<Token>().ToTable("Token");
-            token.Property(x => x.AuthToken).HasMaxLength(256);
-
-
-
+            token.Property(x => x.AuthToken).HasMaxLength(1000);
             base.OnModelCreating(modelBuilder);
 
 
