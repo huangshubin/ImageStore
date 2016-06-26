@@ -20,5 +20,19 @@ namespace ImageStoreWeb.Repositories
             return user;
         }
 
+        public async Task AddAsync(Client newUser)
+        {
+             DB.Clients.Add(newUser);
+
+            await DB.SaveChangesAsync();
+        }
+
+        public async Task<Client> FindAsync(string userName)
+        {
+            var user = await DB.Clients.FirstOrDefaultAsync(x => x.UserName == userName);
+
+            return user;
+
+        }
     }
 }

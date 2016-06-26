@@ -61,6 +61,7 @@ namespace ImageStoreWeb.Infrastructure
             modelBuilder.Properties<string>().Configure(
                 x => x.HasMaxLength(100).IsRequired()
                 );
+
             modelBuilder.Types<EntityBase>().Configure(c =>
             {
                 c.Property(x => x.CreatedOn)
@@ -77,7 +78,7 @@ namespace ImageStoreWeb.Infrastructure
             user.Property(x => x.Phone).IsOptional();
             user.Property(x => x.Password).HasMaxLength(256);
 
-            var image = modelBuilder.Entity<Image>().ToTable("");
+            var image = modelBuilder.Entity<Image>().ToTable("Image");
             image.Property(x => x.ImagePath).HasMaxLength(256).IsOptional();
             image.Property(x => x.ImageContent).IsOptional();
             image.Property(x => x.ImageType).HasMaxLength(10);
