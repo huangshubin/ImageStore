@@ -9,13 +9,14 @@ using ImageStoreWeb.Externsions;
 using System;
 using System.Web;
 using ImageStoreWeb.Repositories;
+using Easy.Logger;
 
 namespace ImageStoreWeb.Controllers
 {
     [Authorize]
     public class AuthController : BaseApiController
     {
-
+        private ILogger _logger = Log4NetService.Instance.GetLogger<ImageController>();
         [Route("api/logout")]
         [HttpGet]
         public async Task<JsonStatusResult> Logout()
@@ -43,6 +44,7 @@ namespace ImageStoreWeb.Controllers
             }
             catch (Exception ex)
             {
+                _logger.Error(ex);
                 return StatusMsg(HttpStatusCode.InternalServerError, ex.Message);
             }
 

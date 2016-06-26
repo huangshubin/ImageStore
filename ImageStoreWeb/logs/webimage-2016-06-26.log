@@ -1,0 +1,30 @@
+2016-06-26 19:42:13,693 [ERROR] [43] ImageController - System.Exception: df
+   at ImageStoreWeb.Controllers.ImageController.<StoreImage>d__3.MoveNext() in D:\projects\ImageStore\ImageStoreWeb\Controllers\ImageController.cs:line 34
+2016-06-26 19:42:15,633 [ERROR] [43] ImageController - System.Exception: df
+   at ImageStoreWeb.Controllers.ImageController.<StoreImage>d__3.MoveNext() in D:\projects\ImageStore\ImageStoreWeb\Controllers\ImageController.cs:line 34
+2016-06-26 19:42:16,427 [ERROR] [43] ImageController - System.Exception: df
+   at ImageStoreWeb.Controllers.ImageController.<StoreImage>d__3.MoveNext() in D:\projects\ImageStore\ImageStoreWeb\Controllers\ImageController.cs:line 34
+2016-06-26 19:42:17,196 [ERROR] [43] ImageController - System.Exception: df
+   at ImageStoreWeb.Controllers.ImageController.<StoreImage>d__3.MoveNext() in D:\projects\ImageStore\ImageStoreWeb\Controllers\ImageController.cs:line 34
+2016-06-26 19:42:18,648 [ERROR] [43] ImageController - System.Exception: df
+   at ImageStoreWeb.Controllers.ImageController.<StoreImage>d__3.MoveNext() in D:\projects\ImageStore\ImageStoreWeb\Controllers\ImageController.cs:line 34
+2016-06-26 19:42:19,344 [ERROR] [48] ImageController - System.Exception: df
+   at ImageStoreWeb.Controllers.ImageController.<StoreImage>d__3.MoveNext() in D:\projects\ImageStore\ImageStoreWeb\Controllers\ImageController.cs:line 34
+2016-06-26 19:42:20,100 [ERROR] [43] ImageController - System.Exception: df
+   at ImageStoreWeb.Controllers.ImageController.<StoreImage>d__3.MoveNext() in D:\projects\ImageStore\ImageStoreWeb\Controllers\ImageController.cs:line 34
+2016-06-26 19:42:20,805 [ERROR] [56] ImageController - System.Exception: df
+   at ImageStoreWeb.Controllers.ImageController.<StoreImage>d__3.MoveNext() in D:\projects\ImageStore\ImageStoreWeb\Controllers\ImageController.cs:line 34
+2016-06-26 19:42:21,552 [ERROR] [59] ImageController - System.Exception: df
+   at ImageStoreWeb.Controllers.ImageController.<StoreImage>d__3.MoveNext() in D:\projects\ImageStore\ImageStoreWeb\Controllers\ImageController.cs:line 34
+2016-06-26 19:42:40,660 [ERROR] [59] ImageController - System.Exception: df
+   at ImageStoreWeb.Controllers.ImageController.<StoreImage>d__3.MoveNext() in D:\projects\ImageStore\ImageStoreWeb\Controllers\ImageController.cs:line 34
+2016-06-26 19:42:41,896 [ERROR] [58] ImageController - System.Exception: df
+   at ImageStoreWeb.Controllers.ImageController.<StoreImage>d__3.MoveNext() in D:\projects\ImageStore\ImageStoreWeb\Controllers\ImageController.cs:line 34
+2016-06-26 19:42:49,297 [ERROR] [64] ImageController - System.Exception: df
+   at ImageStoreWeb.Controllers.ImageController.<StoreImage>d__3.MoveNext() in D:\projects\ImageStore\ImageStoreWeb\Controllers\ImageController.cs:line 34
+2016-06-26 19:42:50,176 [ERROR] [56] ImageController - System.Exception: df
+   at ImageStoreWeb.Controllers.ImageController.<StoreImage>d__3.MoveNext() in D:\projects\ImageStore\ImageStoreWeb\Controllers\ImageController.cs:line 34
+2016-06-26 19:42:50,998 [ERROR] [43] ImageController - System.Exception: df
+   at ImageStoreWeb.Controllers.ImageController.<StoreImage>d__3.MoveNext() in D:\projects\ImageStore\ImageStoreWeb\Controllers\ImageController.cs:line 34
+2016-06-26 19:42:51,660 [ERROR] [43] ImageController - System.Exception: df
+   at ImageStoreWeb.Controllers.ImageController.<StoreImage>d__3.MoveNext() in D:\projects\ImageStore\ImageStoreWeb\Controllers\ImageController.cs:line 34

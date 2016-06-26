@@ -199,4 +199,8 @@ D:\projects\ImageStore\ImageStoreWeb\obj\Debug\ImageStoreWeb.dll
 D:\projects\ImageStore\ImageStoreWeb\obj\Debug\ImageStoreWeb.pdb
 D:\projects\ImageStore\ImageStoreWeb\obj\Debug\ImageStoreWeb.Migrations.first.resources
 D:\projects\ImageStore\ImageStoreWeb\obj\Debug\ImageStoreWeb.csproj.GenerateResource.Cache
-D:\projects\ImageStore\ImageStoreWeb\obj\Debug\ImageStoreWeb.csprojResolveAssemblyReference.cache
+D:\projects\ImageStore\ImageStoreWeb\bin\Easy.Logger.dll
+D:\projects\ImageStore\ImageStoreWeb\bin\log4net.dll
+D:\projects\ImageStore\ImageStoreWeb\bin\Easy.Logger.xml
+D:\projects\ImageStore\ImageStoreWeb\bin\log4net.xml
+D:\projects\ImageStore\ImageStoreWeb\bin\log4net.config

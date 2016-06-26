@@ -11,6 +11,7 @@ using System.Web;
 using ImageStoreWeb.Repositories;
 using System.Web.Http.Results;
 using System.Collections.Generic;
+using Easy.Logger;
 
 namespace ImageStoreWeb.Controllers
 {
@@ -18,6 +19,7 @@ namespace ImageStoreWeb.Controllers
     [RoutePrefix("api/image")]
     public class ImageController : BaseApiController
     {
+        private ILogger _logger = Log4NetService.Instance.GetLogger<ImageController>();
         private ImageRepository imgResponsity;
         public ImageController()
         {
@@ -50,6 +52,7 @@ namespace ImageStoreWeb.Controllers
             }
             catch (Exception ex)
             {
+                _logger.Error(ex);
                 return StatusMsg(HttpStatusCode.InternalServerError, ex.Message);
             }
 
@@ -76,6 +79,7 @@ namespace ImageStoreWeb.Controllers
             }
             catch (Exception ex)
             {
+                _logger.Error(ex);
                 return StatusMsg(HttpStatusCode.InternalServerError, ex.Message);
             }
 
@@ -88,7 +92,7 @@ namespace ImageStoreWeb.Controllers
 
                 var image = await imgResponsity.FineImageById(id);
 
-                var result = new {type=image.Item2, image = image.Item1};
+                var result = new { type = image.Item2, image = image.Item1 };
 
                 return Request.CreateJsonResult(result);
 
@@ -100,6 +104,7 @@ namespace ImageStoreWeb.Controllers
             }
             catch (Exception ex)
             {
+                _logger.Error(ex);
                 return StatusMsg(HttpStatusCode.InternalServerError, ex.Message);
             }
 
