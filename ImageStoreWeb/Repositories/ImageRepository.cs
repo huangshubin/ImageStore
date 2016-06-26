@@ -39,7 +39,7 @@ namespace ImageStoreWeb.Repositories
             {
                 var destFileName = $"File_{user.Name}_{DateTime.Now.ToString("yyyyMMddhhmmss")}{Path.GetExtension(orignFileName)}";
 
-                savePath = SaveImageDest(imgTempPath, orignFileName);
+                savePath = SaveImageDest(imgTempPath, destFileName);
             }
             var img = new Models.Image()
             {
