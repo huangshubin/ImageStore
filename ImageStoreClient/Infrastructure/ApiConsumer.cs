@@ -50,15 +50,6 @@ namespace ImageClient.Infrastructure
             var result = await WebAPIClient.GetAsync(url, AppContext.Current.AuthToken);
             return result;
         }
-        public ResponseResult Logout()
-        {
 
-            var url = ImageWebAPIs.Logout;
-            if (AppContext.Current.AuthToken == null)
-                return ResponseResult.Empty;
-
-            var result = WebAPIClient.Get(url, AppContext.Current.AuthToken);
-            return result;
-        }
     }
 }

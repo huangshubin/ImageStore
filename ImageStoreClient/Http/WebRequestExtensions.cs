@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ImageClient.Http
 {
-  public static  class WebRequestExtensions
+    public static class WebRequestExtensions
     {
 
         public static async Task<WebResponse> GetApiResponseAsync(this WebRequest request)
@@ -33,5 +33,27 @@ namespace ImageClient.Http
             }
         }
 
+        public static WebResponse GetApiResponse(this WebRequest request)
+        {
+            if (request == null)
+            {
+                throw new ArgumentNullException("request");
+            }
+
+            try
+            {
+                var response = request.GetResponse();
+                return response;
+            }
+            catch (WebException e)
+            {
+                if (e.Response == null)
+                {
+                    throw;
+                }
+
+                return e.Response;
+            }
+        }
     }
 }

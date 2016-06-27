@@ -27,6 +27,8 @@ namespace ImageClient.Command
         public void Execute(object parameter)
         {
             _command(parameter);
+
+            RaiseCanExecuteChanged();
         }
         public event EventHandler CanExecuteChanged
         {

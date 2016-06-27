@@ -32,10 +32,12 @@ namespace ImageClient
             app.Show();
         }
 
-        private void Application_Exit(object sender, ExitEventArgs e)
+        private async void Application_Exit(object sender, ExitEventArgs e)
         {
             var consumer = new ApiConsumer();
-            consumer.Logout();
+            await consumer.LogoutSync();
         }
+
+    
     }
 }

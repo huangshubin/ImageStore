@@ -132,28 +132,7 @@ namespace ImageClient.Http
                 return result;
             }
         }
-        public static ResponseResult Get(string url, AuthToken token = null)
-        {
-
-            var req = WebRequest.Create(url);
-            if (token != null)
-            {
-                req.Headers.Add("authorization", $"Bearer {token.Key}");
-            }
-            using (var resp = (HttpWebResponse)req.GetResponse())
-            {
-                var result = new ResponseResult();
-                result.StatusCode = resp.StatusCode;
-
-                using (var sr = new StreamReader(resp.GetResponseStream()))
-                {
-                    var content = sr.ReadToEnd();
-                    var d = JObject.Parse(content);
-                    result.JContent = d;
-                }
-                return result;
-            }
-        }
+     
         private static string GetContentType(string fileName)
         {
             var contentType = "image/jpeg";

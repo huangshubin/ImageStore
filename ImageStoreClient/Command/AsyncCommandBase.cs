@@ -14,6 +14,7 @@ namespace ImageClient.Command
         public async void Execute(object parameter)
         {
             await ExecuteAsync(parameter);
+            RaiseCanExecuteChanged();
         }
         public event EventHandler CanExecuteChanged
         {

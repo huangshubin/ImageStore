@@ -60,7 +60,7 @@ namespace ImageClient.ViewModels
         private string _message;
         public string Message { get { return _message; } set { _message = value; NotifyPropertyChanged("Message"); } }
 
-        private bool? _displayMsg = true;
+        private bool? _displayMsg = false;
         public bool? DisplayMsg { get { return _displayMsg; } set { _displayMsg = value; NotifyPropertyChanged("DisplayMsg"); } }
 
 
@@ -86,6 +86,13 @@ namespace ImageClient.ViewModels
             {
                 CanExecute = false;
                 DisplayMsg = false;
+
+                if (String.IsNullOrEmpty(ImagePath))
+                {
+                    DisplayMsg = true;
+                    Message = "Image path is requried";
+                    return;
+                }
 
                 ApiConsumer consumer = new ApiConsumer();
                 var result = await consumer.SendImageAsync(ImagePath, IsStore);

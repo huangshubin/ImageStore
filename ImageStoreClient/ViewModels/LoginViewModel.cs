@@ -32,7 +32,7 @@ namespace ImageClient.ViewModels
         private string _password;
         public string Password { get { return _password; } set { _password = value; } }
 
-        private bool? _failure = true;
+        private bool? _failure = false;
         public bool? Failure { get { return _failure; } set { _failure = value; NotifyPropertyChanged("Failure"); } }
 
 
@@ -58,6 +58,9 @@ namespace ImageClient.ViewModels
         {
             try
             {
+                Failure = false;
+                FailureReason = "";
+
                 var passwordCtrl = parameter as PasswordBox;
 
                 if (passwordCtrl == null) throw new Exception("can not find the password control");
