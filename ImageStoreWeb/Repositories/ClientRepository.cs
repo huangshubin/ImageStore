@@ -12,17 +12,17 @@ namespace ImageStoreWeb.Repositories
     public class ClientRepository : DBRepository
     {
 
-        public async Task<Client> FindAsync(string userName, string password, bool isActive = true)
+        public async Task<Client> FindAsync(string userName, string password)
         {
             var hashPwd = AppHelper.GetHash(password);
             var user = await DB.Clients.FirstOrDefaultAsync(x => x.UserName == userName
-           && x.Password == hashPwd && x.Active == isActive);
+           && x.Password == hashPwd);
             return user;
         }
 
         public async Task AddAsync(Client newUser)
         {
-             DB.Clients.Add(newUser);
+            DB.Clients.Add(newUser);
 
             await DB.SaveChangesAsync();
         }

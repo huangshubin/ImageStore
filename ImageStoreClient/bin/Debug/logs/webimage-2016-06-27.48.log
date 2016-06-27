@@ -1,0 +1,4 @@
+2016-06-27 15:50:11,298 [ERROR] [ 8] LoginViewModel - System.NullReferenceException: Object reference not set to an instance of an object.
+   at ImageClient.ViewModels.LoginViewModel.<Login>d__26.MoveNext() in D:\projects\ImageStore\ImageStoreClient\ViewModels\LoginViewModel.cs:line 92
+2016-06-27 15:50:17,655 [ERROR] [ 8] LoginViewModel - System.NullReferenceException: Object reference not set to an instance of an object.
+   at ImageClient.ViewModels.LoginViewModel.<Login>d__26.MoveNext() in D:\projects\ImageStore\ImageStoreClient\ViewModels\LoginViewModel.cs:line 92

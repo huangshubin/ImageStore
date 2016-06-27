@@ -43,7 +43,7 @@ namespace ImageStoreWeb.Controllers
                 await imgResponsity.SaveSync(formData, CurUser);
 
 
-                return StatusMsg(HttpStatusCode.OK, "success");
+                return StatusMsg(HttpStatusCode.OK, $"{CurUser.Name} your image was processed");
             }
 
             catch (HttpDataException hre)

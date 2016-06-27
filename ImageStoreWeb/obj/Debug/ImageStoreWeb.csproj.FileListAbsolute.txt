@@ -204,3 +204,4 @@ D:\projects\ImageStore\ImageStoreWeb\bin\log4net.dll
 D:\projects\ImageStore\ImageStoreWeb\bin\Easy.Logger.xml
 D:\projects\ImageStore\ImageStoreWeb\bin\log4net.xml
 D:\projects\ImageStore\ImageStoreWeb\bin\log4net.config
+D:\projects\ImageStore\ImageStoreWeb\obj\Debug\ImageStoreWeb.csprojResolveAssemblyReference.cache

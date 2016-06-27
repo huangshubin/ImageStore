@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="ImageClient.Views.LoginView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ImageClient"
+        mc:Ignorable="d" FontSize="18" 
+         Height="500" Width="600">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </UserControl.Resources>
+
+    <Grid Margin="20 30 10 20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"  TextAlignment="Center">
+            <Bold FontSize="32">Web Image Store Client</Bold>
+        </TextBlock>
+        <TextBlock TextWrapping="Wrap" Text="{Binding FailureReason}" Margin="0 0 0 10" Foreground="Red"  Visibility="{Binding Failure,Converter={StaticResource BoolToVis}}" Grid.Row="1"></TextBlock>
+        <StackPanel Margin="0 10" Grid.Row="2" Orientation="Horizontal">
+            <TextBlock Width="140" Margin="0 0 10 0"  TextAlignment="Right">User Name:</TextBlock>
+            <TextBox Width="320" Text="{Binding UserName}"/>
+        </StackPanel>
+        <StackPanel Margin="0 10" Orientation="Horizontal" Grid.Row="3">
+            <TextBlock Width="140" Margin="0 0 10 0" TextAlignment="Right">Password:</TextBlock>
+            <PasswordBox Width="320" Name="pbPassword" />
+        </StackPanel>
+        <Button Margin="0 10" Grid.Row="4" Width="180" IsEnabled="{Binding CanExecute}" CommandParameter="{Binding ElementName=pbPassword}" Command="{Binding LoginCommand}">Login</Button>
+    </Grid>
+</UserControl>

@@ -32,10 +32,15 @@ namespace ImageStoreWeb.Providers
 
             if (user == null)
             {
-                context.SetError("invalid_grant", "user name/password is not incorrect. or user is not active");
+                context.SetError("invalid_grant", "This user is not registered or password is not conrrect");
                 return;
             }
 
+            if (user.Active == false)
+            {
+                context.SetError("invalid_grant", "Your account has not yet been verified, please wait for email verification.");
+                return;
+            }
 
             ClaimsIdentity oAuthIdentity = GenerateIdentity(user);
 

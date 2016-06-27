@@ -1,0 +1,54 @@
+2016-06-27 17:55:16,978 [ERROR] [12] ImageController - System.OutOfMemoryException: Out of memory.
+   at System.Drawing.Image.FromFile(String filename, Boolean useEmbeddedColorManagement)
+   at ImageStoreWeb.Infrastructure.AppHelper.imageToByteArray(String imgPath, String type) in D:\projects\ImageStore\ImageStoreWeb\Infrastructure\AppHelper.cs:line 37
+   at ImageStoreWeb.Repositories.ImageRepository.<SaveSync>d__0.MoveNext() in D:\projects\ImageStore\ImageStoreWeb\Repositories\ImageRepository.cs:line 44
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at ImageStoreWeb.Controllers.ImageController.<StoreImage>d__3.MoveNext() in D:\projects\ImageStore\ImageStoreWeb\Controllers\ImageController.cs:line 43
+2016-06-27 17:55:57,532 [ERROR] [10] ImageController - System.OutOfMemoryException: Out of memory.
+   at System.Drawing.Image.FromFile(String filename, Boolean useEmbeddedColorManagement)
+   at ImageStoreWeb.Infrastructure.AppHelper.imageToByteArray(String imgPath, String type) in D:\projects\ImageStore\ImageStoreWeb\Infrastructure\AppHelper.cs:line 37
+   at ImageStoreWeb.Repositories.ImageRepository.<SaveSync>d__0.MoveNext() in D:\projects\ImageStore\ImageStoreWeb\Repositories\ImageRepository.cs:line 44
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at ImageStoreWeb.Controllers.ImageController.<StoreImage>d__3.MoveNext() in D:\projects\ImageStore\ImageStoreWeb\Controllers\ImageController.cs:line 43
+2016-06-27 17:58:01,237 [ERROR] [10] ImageController - System.OutOfMemoryException: Out of memory.
+   at System.Drawing.Image.FromFile(String filename, Boolean useEmbeddedColorManagement)
+   at ImageStoreWeb.Infrastructure.AppHelper.imageToByteArray(String imgPath, String type) in D:\projects\ImageStore\ImageStoreWeb\Infrastructure\AppHelper.cs:line 37
+   at ImageStoreWeb.Repositories.ImageRepository.<SaveSync>d__0.MoveNext() in D:\projects\ImageStore\ImageStoreWeb\Repositories\ImageRepository.cs:line 44
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at ImageStoreWeb.Controllers.ImageController.<StoreImage>d__3.MoveNext() in D:\projects\ImageStore\ImageStoreWeb\Controllers\ImageController.cs:line 43
+2016-06-27 17:58:58,650 [ERROR] [23] ImageController - System.OutOfMemoryException: Out of memory.
+   at System.Drawing.Image.FromFile(String filename, Boolean useEmbeddedColorManagement)
+   at ImageStoreWeb.Infrastructure.AppHelper.imageToByteArray(String imgPath, String type) in D:\projects\ImageStore\ImageStoreWeb\Infrastructure\AppHelper.cs:line 37
+   at ImageStoreWeb.Repositories.ImageRepository.<SaveSync>d__0.MoveNext() in D:\projects\ImageStore\ImageStoreWeb\Repositories\ImageRepository.cs:line 44
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at ImageStoreWeb.Controllers.ImageController.<StoreImage>d__3.MoveNext() in D:\projects\ImageStore\ImageStoreWeb\Controllers\ImageController.cs:line 43
+2016-06-27 17:59:33,949 [ERROR] [20] ImageController - System.OutOfMemoryException: Out of memory.
+   at System.Drawing.Image.FromFile(String filename, Boolean useEmbeddedColorManagement)
+   at ImageStoreWeb.Infrastructure.AppHelper.imageToByteArray(String imgPath, String type) in D:\projects\ImageStore\ImageStoreWeb\Infrastructure\AppHelper.cs:line 37
+   at ImageStoreWeb.Repositories.ImageRepository.<SaveSync>d__0.MoveNext() in D:\projects\ImageStore\ImageStoreWeb\Repositories\ImageRepository.cs:line 44
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at ImageStoreWeb.Controllers.ImageController.<StoreImage>d__3.MoveNext() in D:\projects\ImageStore\ImageStoreWeb\Controllers\ImageController.cs:line 43
+2016-06-27 17:59:44,802 [ERROR] [14] ImageController - System.OutOfMemoryException: Out of memory.
+   at System.Drawing.Image.FromFile(String filename, Boolean useEmbeddedColorManagement)
+   at ImageStoreWeb.Infrastructure.AppHelper.imageToByteArray(String imgPath, String type) in D:\projects\ImageStore\ImageStoreWeb\Infrastructure\AppHelper.cs:line 37
+   at ImageStoreWeb.Repositories.ImageRepository.<SaveSync>d__0.MoveNext() in D:\projects\ImageStore\ImageStoreWeb\Repositories\ImageRepository.cs:line 44
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at ImageStoreWeb.Controllers.ImageController.<StoreImage>d__3.MoveNext() in D:\projects\ImageStore\ImageStoreWeb\Controllers\ImageController.cs:line 43
