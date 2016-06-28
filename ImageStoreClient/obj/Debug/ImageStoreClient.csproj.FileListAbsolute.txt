@@ -25,7 +25,6 @@ D:\projects\ImageStore\ImageStoreClient\obj\Debug\Views\LoginView.baml
 D:\projects\ImageStore\ImageStoreClient\obj\Debug\Views\ImageSendView.baml
 D:\projects\ImageStore\ImageStoreClient\obj\Debug\GeneratedInternalTypeHelper.g.cs
 D:\projects\ImageStore\ImageStoreClient\obj\Debug\App.baml
-D:\projects\ImageStore\ImageStoreClient\obj\Debug\Theme\Resources.baml
 D:\projects\ImageStore\ImageStoreClient\bin\Debug\System.Windows.Controls.Input.Toolkit.dll
 D:\projects\ImageStore\ImageStoreClient\bin\Debug\System.Windows.Controls.Layout.Toolkit.dll
 D:\projects\ImageStore\ImageStoreClient\bin\Debug\WPFToolkit.dll
